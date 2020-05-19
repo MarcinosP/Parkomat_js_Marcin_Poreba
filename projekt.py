@@ -1,28 +1,41 @@
 import datetime
-kasa = 0
-miesiace_MAX = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31}
+from datetime import timedelta
+
 monety = {"1gr": 1, "2gr": 2, "5gr": 5, "10gr": 10, "20gr": 20, "50gr": 50, "1zl": 100, "2zl": 200, "5zl": 500,
           "10zl": 1000, "20zl": 2000, "50zl": 5000}
-dni_tygodnia_nazwy = {0: "poniedzialek", 1: "wtorek", 2: "sroda", 3: "czwartek", 4: "piatek", 5: "sobota",
-                      6: "niedziela"}
+kasa = 0
 
 teraz = datetime.datetime.now()
 teraz_dzien = teraz.weekday()  # zwraca dzien tygodnia 0-poniedzialek 1-wtorek itd
 teraz_nr_dnia = teraz.day
 
+teraz = datetime.datetime.now()
+terazstring = (str(teraz)).split(" ")
+terazstring = terazstring[1].split(".")
+terazstring = terazstring[0].split(":")  # tablica stringow godzina,minuta,sekunda
 
-def dodajMonete(ile):
+
+def dodajMonete(ile, iloraz=1):
+    """Funcja dodająca monety do ogólnej ilosci pieniedzy"""
     global kasa
-    kasa+=monety[ile]
+    for i in range(iloraz):
+        kasa += monety[ile]
 
 
-# print((str(teraz)))
-# print(dni_tygodnia_nazwy[teraz_dzien])
-# print(teraz_nr_dnia)
+def CzasUserFriendly(data):
+    """zamienia format datatime na string wsywietlajacy date zgodnie z zaleceniami"""
+    tmp = (str(data)).split(" ")
+    wynik = tmp[0]
+    tmp = tmp[1].split(":")
+    wynik = wynik + " " + tmp[0] + ":" + tmp[1]
+    return wynik
+
+
+print(CzasUserFriendly(teraz))
 
 
 def przelicz_czas(sekundy):
-    # dostaje liczbe sekund zwraca liste wykupiony czas
+    """Funkcja otrzymuje ilosc sekund i zamienia to na zbior: dni godziny minuty i sekundy"""
     wykupiony_czas = {"d": 0, "h": 0, "m": 0, "s": 0}
     if sekundy < 0:
         exit(1)
@@ -49,63 +62,28 @@ def przelicz_czas(sekundy):
     return wykupiony_czas
 
 
-def uaktualnij_czas(wykupiony_czas):
-    teraz = datetime.datetime.now()
-    terazstring = (str(teraz)).split(" ")
-    terazstring = terazstring[1].split(".")
-    terazstring = terazstring[0].split(":")  # tablica stringow godzina,minuta,sekunda
-
-    teraz_i = [int(i) for i in terazstring]
-
-    wykupiony_czas["s"] += teraz_i[2]
-    if wykupiony_czas["s"] > 59:
-        wykupiony_czas["s"] = wykupiony_czas["s"] % 60
-        wykupiony_czas["m"] += 1
-        if wykupiony_czas["m"] > 59:
-            wykupiony_czas["m"] = wykupiony_czas["m"] % 60
-            wykupiony_czas["h"] += 1
-            if wykupiony_czas["h"] > 23:
-                wykupiony_czas["h"] = wykupiony_czas["h"] % 24
-                wykupiony_czas["h"] += 1
-                if wykupiony_czas["d"] > 365:
-                    print("brak moziwosci wykupienia parkingu na nastepny rok")
-    wykupiony_czas["m"] += teraz_i[1]
-    if wykupiony_czas["m"] > 59:
-        wykupiony_czas["m"] = wykupiony_czas["m"] % 60
-        wykupiony_czas["h"] += 1
-        if wykupiony_czas["h"] > 23:
-            wykupiony_czas["h"] = wykupiony_czas["h"] % 24
-            wykupiony_czas["h"] += 1
-            if wykupiony_czas["d"] > 365:
-                print("brak moziwosci wykupienia parkingu na nastepny rok")
-    wykupiony_czas["h"] += teraz_i[1]
-    if wykupiony_czas["h"] > 23:
-        wykupiony_czas["h"] = wykupiony_czas["h"] % 24
-        wykupiony_czas["h"] += 1
-        if wykupiony_czas["d"] > 365:
-            print("brak moziwosci wykupienia parkingu na nastepny rok")
-    return wykupiony_czas
+# datetime.now() + timedelta(days=1)
+def aktualizujCzas(sekundy):
+    # wyjazd = datetime.datetime.now()
+    # platnyHMin = datetime.time(8, 0, 0)
+    # platnyHMax = datetime.time(20, 0, 0)
+    # Ddzisiaj = teraz.weekday()
+    # platnyDMin = 0
+    # platnyDMax = 4
+    # while(sekundy>0):
+    #     if Ddzisiaj > 4:
+    #         pass
+    pass
 
 
 def zwroc_czas(kasa):
-    # zwraca ilosc czasu w sekundach w zaleznosci od podanej kwoty
+    """Funkcja otrzymuje kwote w groszach i zwraca ilosc wykupionego czasu w sekundach"""
     if (kasa <= 200):
         return kasa * 18
     elif (kasa <= 600):
         return 3600 + (kasa - 200) * 9
     else:
         return 7200 + (kasa - 600) * 7.2
-
-
-def kup_bilet():
-    numer_rejestracyjny = input("podaj numer rejestracyjny samochodu: ")
-    while (1):
-        wrzuc = input("wrzuć monetę")
-        if wrzuc == 0:
-            exit()
-        czas = zwroc_czas(monety[wrzuc])
-        print(czas / 60)
-
 
 # czas = zwroc_czas(601)
 # print(czas)
