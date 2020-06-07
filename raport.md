@@ -31,6 +31,14 @@ od 8 do 20 godziny i od poniedziałku do piątku sprawiło mi problemy
 
 [dictionary comprehension](https://github.com/MarcinosP/Parkomat_js_Marcin_Poreba/blob/ff61f583571ea183d5e10cd6327ee6cf71fbd0bb/projekt.py#L29)
 
+[class Monety](https://github.com/MarcinosP/Parkomat_js_Marcin_Poreba/blob/105987151de0ef5e83c1890734d47f51ddce484c/projekt.py#L7-L56)
+
+[class Skarbonka](https://github.com/MarcinosP/Parkomat_js_Marcin_Poreba/blob/105987151de0ef5e83c1890734d47f51ddce484c/projekt.py#L59-L122)
+
+[class Czas](https://github.com/MarcinosP/Parkomat_js_Marcin_Poreba/blob/105987151de0ef5e83c1890734d47f51ddce484c/projekt.py#L138-L207)
+
+[class interfejs](https://github.com/MarcinosP/Parkomat_js_Marcin_Poreba/blob/105987151de0ef5e83c1890734d47f51ddce484c/projektMain.py#L8-L102)
+
 [logic module](https://github.com/MarcinosP/Parkomat_js_Marcin_Poreba/blob/master/projekt.py)
 
 [interface module](https://github.com/MarcinosP/Parkomat_js_Marcin_Poreba/blob/master/projektMain.py)
