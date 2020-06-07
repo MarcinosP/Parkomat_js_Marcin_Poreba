@@ -108,5 +108,3 @@ root.title("Parkomat")
 projekt = interfejs
 projekt.gui(interfejs)
 root.mainloop()
-
-messagebox.showinfo("Rejestracja blad", e.RejestracjaMaleLitery.message)

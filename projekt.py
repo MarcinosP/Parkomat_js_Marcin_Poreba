@@ -86,11 +86,11 @@ class Skarbonka(Monety):
         :param ile: ilość monet jaką chcesz dodać
         """
         try:
-            if len(self.__licznikmonet) > 200:
+            if len(self.__licznikmonet) > 199:
                 raise e.PrzepelnienieDrobnych
             if isinstance(m, Monety):
                 for i in range(ile):
-                    if len(self.__licznikmonet) > 200:
+                    if len(self.__licznikmonet) > 199:
                         raise e.PrzepelnienieDrobnych
                     self.__lista.append(m)
                     if (m.getwartosc() in self.getdrobne()):
@@ -193,14 +193,11 @@ class Czas(Skarbonka):
                 break
             if (tmpwyjazd.hour < 8 or tmpwyjazd.hour >= 20):
                 tmpwyjazd = self.ustawRano(tmpwyjazd)
-                i += 1
             if (tmpwyjazd.weekday() > 4):  # sprawdzam czy jest pomiedzy pon a piatkiem
                 tmpwyjazd = self.ustawRano(tmpwyjazd)
-                i += 1
                 if (tmpwyjazd.weekday() > 4):
                     tmpwyjazd = self.ustawPon(tmpwyjazd)
                     tmpwyjazd = tmpwyjazd + timedelta(seconds=1)
-                    i += 1
                 else:
                     tmpwyjazd = tmpwyjazd + timedelta(seconds=1)
                     i += 1
@@ -208,6 +205,5 @@ class Czas(Skarbonka):
                 tmpwyjazd = tmpwyjazd + timedelta(seconds=1)
                 i += 1
         return tmpwyjazd
-
-
 timer = Czas("1zl")
+
