@@ -1,6 +1,6 @@
 # PARKOMAT - raport
 ## Założenia projektowe kodu
-Moim zadaniem było napisanie programu imitujązego parkomat,
+Moim zadaniem było napisanie programu imitującego parkomat,
 Projekt został wykonany w programie PyCharm, do rysowania okienek użyłem biblioteki tkinter,
  którą poznałem na lab6 z języków symbolicznych
 ## Ogólny opis kodu
